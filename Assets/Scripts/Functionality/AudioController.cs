@@ -9,10 +9,10 @@ public class AudioController : MonoBehaviour
     [SerializeField] internal AudioSource audioPlayer_wl;
     [SerializeField] internal AudioSource audioPlayer_button;
     [SerializeField] internal AudioSource audioSpin_button;
+    [SerializeField] internal AudioSource coins;
     [SerializeField] private AudioClip[] clips;
     [SerializeField] private AudioClip[] Bonusclips;
     [SerializeField] private AudioSource bg_audioBonus;
-    [SerializeField] private AudioSource audioPlayer_Bonus;
 
     private void Start()
     {
@@ -45,9 +45,9 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    internal void SwitchBGSound(bool isbonus)
+    internal void SwitchBGSound(bool isfreeSpin)
     {
-        if(isbonus)
+        if(isfreeSpin)
         {
             if (bg_audioBonus) bg_audioBonus.enabled = true;
             if (bg_adudio) bg_adudio.enabled = false;
@@ -59,24 +59,27 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    internal void PlayCoinSounds(){
+        // StopCoinSounds();
+        coins.Play();
+        Invoke(nameof(StopCoinSounds),1f);
+
+    }
+
+    internal void StopCoinSounds(){
+        coins.Stop();
+    }
     internal void PlayWLAudio(string type)
     {
         audioPlayer_wl.loop = false;
         int index = 0;
         switch (type)
         {
-            case "spin":
-                index = 0;
-                audioPlayer_wl.loop = true;
-                break;
             case "win":
                 index = 1;
                 break;
-            case "lose":
-                index = 2;
-                break;
             case "spinStop":
-                index = 3;
+                index = 0;
                 break;
             case "megaWin":
                 index = 4;
@@ -105,8 +108,7 @@ public class AudioController : MonoBehaviour
                 break;
         }
         StopBonusAaudio();
-        audioPlayer_Bonus.clip = Bonusclips[index];
-        audioPlayer_Bonus.Play();
+
 
     }
 
@@ -128,8 +130,7 @@ public class AudioController : MonoBehaviour
 
     internal void StopBonusAaudio()
     {
-        audioPlayer_Bonus.Stop();
-        audioPlayer_Bonus.loop = false;
+
     }
 
     internal void StopBgAudio()
@@ -151,13 +152,14 @@ public class AudioController : MonoBehaviour
                 break;
             case "wl":
                 audioPlayer_wl.mute=toggle;
-                audioPlayer_Bonus.mute = toggle;
+                coins.mute=toggle;
                 break;
             case "all":
                 audioPlayer_wl.mute = toggle;
                 bg_adudio.mute = toggle;
                 audioPlayer_button.mute = toggle;
                 audioSpin_button.mute = toggle;
+                coins.mute=toggle;
                 break;
         }
     }

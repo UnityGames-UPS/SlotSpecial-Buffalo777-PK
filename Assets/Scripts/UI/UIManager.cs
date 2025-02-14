@@ -54,19 +54,12 @@ public class UIManager : MonoBehaviour
     private GameObject SettingsPopup_Object;
     [SerializeField]
     private Button SettingsExit_Button;
-    [SerializeField]
-    private Button Sound_Button;
-    [SerializeField]
-    private Button Music_Button;
+    [SerializeField] private Button Sound_Button;
+    [SerializeField] private Button Music_Button;
 
-    [SerializeField]
-    private GameObject MusicOn_Object;
-    [SerializeField]
-    private GameObject MusicOff_Object;
-    [SerializeField]
-    private GameObject SoundOn_Object;
-    [SerializeField]
-    private GameObject SoundOff_Object;
+    [SerializeField] private Sprite[] sound_onOff_sprite;
+    [SerializeField] private Sprite[] MusicOnOff_Sprite;
+
 
     [Header("Win Popup")]
     [SerializeField]
@@ -170,11 +163,6 @@ public class UIManager : MonoBehaviour
         if (SettingsExit_Button) SettingsExit_Button.onClick.RemoveAllListeners();
         if (SettingsExit_Button) SettingsExit_Button.onClick.AddListener(ClosePopup);
 
-        if (MusicOn_Object) MusicOn_Object.SetActive(true);
-        if (MusicOff_Object) MusicOff_Object.SetActive(false);
-
-        if (SoundOn_Object) SoundOn_Object.SetActive(true);
-        if (SoundOff_Object) SoundOff_Object.SetActive(false);
 
         if (GameExit_Button) GameExit_Button.onClick.RemoveAllListeners();
         if (GameExit_Button) GameExit_Button.onClick.AddListener(delegate
@@ -409,20 +397,21 @@ public class UIManager : MonoBehaviour
         isMusic = !isMusic;
         if (isMusic)
         {
-            if (MusicOn_Object) MusicOn_Object.SetActive(true);
-            if (MusicOff_Object) MusicOff_Object.SetActive(false);
+            Music_Button.image.sprite=MusicOnOff_Sprite[0];
+
             audioController.ToggleMute(false, "bg");
         }
         else
         {
-            if (MusicOn_Object) MusicOn_Object.SetActive(false);
-            if (MusicOff_Object) MusicOff_Object.SetActive(true);
+            Music_Button.image.sprite=MusicOnOff_Sprite[1];
+
             audioController.ToggleMute(true, "bg");
         }
     }
 
     void TogglePage(int index)
     {
+        audioController.PlayButtonAudio();
         if (index > 0)
         {
             currentPageIndex++;
@@ -467,15 +456,13 @@ public class UIManager : MonoBehaviour
         isSound = !isSound;
         if (isSound)
         {
-            if (SoundOn_Object) SoundOn_Object.SetActive(true);
-            if (SoundOff_Object) SoundOff_Object.SetActive(false);
+            Sound_Button.image.sprite=sound_onOff_sprite[0];
             if (audioController) audioController.ToggleMute(false, "button");
             if (audioController) audioController.ToggleMute(false, "wl");
         }
         else
         {
-            if (SoundOn_Object) SoundOn_Object.SetActive(false);
-            if (SoundOff_Object) SoundOff_Object.SetActive(true);
+            Sound_Button.image.sprite=sound_onOff_sprite[1];
             if (audioController) audioController.ToggleMute(true, "button");
             if (audioController) audioController.ToggleMute(true, "wl");
         }

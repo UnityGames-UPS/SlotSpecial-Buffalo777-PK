@@ -437,6 +437,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sound_on
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 832
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c3e7bee681b485cbdda7e9ee2c020a
+      internalID: -1414989515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sound_off
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 832
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60856841ab054462982673404a03345
+      internalID: 2131476207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -464,6 +506,8 @@ TextureImporter:
       i_1: -1384992695
       i_2: -796614896
       i_3: -182561800
+      sound_off: 2131476207
+      sound_on: -1414989515
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
