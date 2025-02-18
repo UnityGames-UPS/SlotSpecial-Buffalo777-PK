@@ -377,6 +377,7 @@ public class UIManager : MonoBehaviour
         }
         if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(true);
+        currentPopup=Popup;
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
     }
 

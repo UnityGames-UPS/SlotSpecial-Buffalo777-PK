@@ -55,14 +55,15 @@ public class SlotBehaviour : MonoBehaviour
     [SerializeField] private TMP_Text TotalBet_text;
     [SerializeField] private TMP_Text LineBet_text;
     [SerializeField] private TMP_Text TotalWin_text;
+    [SerializeField] private GameObject TotalWinAnim;
+    [SerializeField] private TMP_Text line_text;
 
     [Header("Audio Management")]
     [SerializeField] private AudioController audioController;
 
     [SerializeField] private UIManager uiManager;
 
-    [Header("BonusGame Popup")]
-    [SerializeField] private BonusController _bonusManager;
+
 
     [Header("Free Spins Board")]
     [SerializeField] private GameObject FSBoard_Object;
@@ -392,6 +393,7 @@ public class SlotBehaviour : MonoBehaviour
         if (Balance_text) Balance_text.text = SocketManager.playerdata.Balance.ToString("F3");
         currentBalance = SocketManager.playerdata.Balance;
         currentTotalBet = SocketManager.initialData.Bets[BetCounter] * Lines;
+        line_text.text=Lines.ToString();
         foreach (var symbol in SocketManager.initUIData.paylines.symbols)
         {
             int id = symbol.ID;
@@ -507,6 +509,7 @@ public class SlotBehaviour : MonoBehaviour
             ToggleButtonGrp(true);
             yield break;
         }
+            TotalWinAnim.SetActive(false);
         
         CheckSpinAudio = true;
 
@@ -620,6 +623,7 @@ public class SlotBehaviour : MonoBehaviour
 
         }
         if (SocketManager.playerdata.currentWining > 0){
+            TotalWinAnim.SetActive(true);
             WinningsAnim(true);
             audioController.PlayCoinSounds();
 
@@ -634,24 +638,15 @@ public class SlotBehaviour : MonoBehaviour
 
         currentBalance = SocketManager.playerdata.Balance;
 
-        if (SocketManager.resultData.jackpot > 0)
+        if (SocketManager.resultData.jackpot >  0)
         {
             uiManager.PopulateWin(4, SocketManager.resultData.jackpot);
             yield return new WaitUntil(() => !CheckPopups);
-            CheckPopups = true;
-        }
-
-        if (SocketManager.resultData.isBonus)
-        {
-            CheckBonusGame();
-        }
-        else
-        {
-            CheckWinPopups();
-        }
+            // CheckPopups = true;
+        }else
+        CheckWinPopups();
 
         yield return new WaitUntil(() => !CheckPopups);
-
 
         if (SocketManager.resultData.isfreeSpinAdded)
         {
@@ -746,10 +741,7 @@ public class SlotBehaviour : MonoBehaviour
         }
     }
 
-    internal void CheckBonusGame()
-    {
-        _bonusManager.StartBonus((int)SocketManager.resultData.BonusStopIndex);
-    }
+
 
     //generate the payout lines generated 
     private void CheckPayoutLineBackend(List<List<string>> points_AnimString, double jackpot = 0)
@@ -904,31 +896,36 @@ public class SlotBehaviour : MonoBehaviour
 
         int firstSymbol = SocketManager.resultData.ResultReel[lineId][0];
         int secondSymbol = SocketManager.resultData.ResultReel[lineId][1];
+        int thirdSymbol=SocketManager.resultData.ResultReel[lineId][2];
 
-        if (SocketManager.resultData.ResultReel[lineId].Contains(9))
-        {
+        // if (SocketManager.resultData.ResultReel[lineId].Contains(9))
+        // {
 
-            for (int i = 0; i < SocketManager.resultData.ResultReel[lineId].Count; i++)
-            {
-                if (SocketManager.resultData.ResultReel[lineId][i] != 9)
-                {
+        //     for (int i = 0; i < SocketManager.resultData.ResultReel[lineId].Count; i++)
+        //     {
+        //         if (SocketManager.resultData.ResultReel[lineId][i] != 9)
+        //         {
 
-                    return SocketManager.resultData.ResultReel[lineId][i];
+        //             return SocketManager.resultData.ResultReel[lineId][i];
 
-                }
-            }
+        //         }
+        //     }
 
+        // }
+        if(firstSymbol== secondSymbol ){
+            if(firstSymbol==thirdSymbol) 
+            return firstSymbol;
+            else if(thirdSymbol==9) 
+            return firstSymbol;
+            else
+            return 12;
         }
-
-        if (firstSymbol != secondSymbol)
+        else if (firstSymbol != secondSymbol)
         {
             if (secondSymbol is 6 or 7 or 8)
                 return 12;
         }
-        else
-        {
-            return firstSymbol;
-        }
+
 
         return -1;
     }

@@ -76,13 +76,13 @@ public class AudioController : MonoBehaviour
         switch (type)
         {
             case "win":
-                index = 1;
+                index = 2;
                 break;
             case "spinStop":
                 index = 0;
                 break;
             case "megaWin":
-                index = 4;
+                index = 1;
                 break;
         }
         StopWLAaudio();
