@@ -438,7 +438,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sound_on
+      name: sound_on_0
       rect:
         serializedVersion: 2
         x: 1671
@@ -459,7 +459,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sound_off
+      name: sound_off_0
       rect:
         serializedVersion: 2
         x: 1833
@@ -475,6 +475,90 @@ TextureImporter:
       bones: []
       spriteID: c60856841ab054462982673404a03345
       internalID: 2131476207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sound_on_1
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 561
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8152753e0d3084f788a778a9cb3175db
+      internalID: 234168060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sound_on_2
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 301
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb3f62541b3c4d92925a543c7b09838
+      internalID: 1216391220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sound_off_1
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 561
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dae25a22f8c244ef9e89edc149b515b
+      internalID: 197753171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sound_off_2
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 300
+        width: 122
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8264f6cbc67c4bc7aaf7ee6842fedf1
+      internalID: -1413359029
       vertices: []
       indices: 
       edges: []
@@ -506,8 +590,12 @@ TextureImporter:
       i_1: -1384992695
       i_2: -796614896
       i_3: -182561800
-      sound_off: 2131476207
-      sound_on: -1414989515
+      sound_off_0: 2131476207
+      sound_off_1: 197753171
+      sound_off_2: -1413359029
+      sound_on_0: -1414989515
+      sound_on_1: 234168060
+      sound_on_2: 1216391220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
