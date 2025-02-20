@@ -132,8 +132,8 @@ public class SlotBehaviour : MonoBehaviour
         if (TBetMinus_Button) TBetMinus_Button.onClick.RemoveAllListeners();
         if (TBetMinus_Button) TBetMinus_Button.onClick.AddListener(delegate { ChangeBet(false); });
 
-        if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
-        if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
+        // if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
+        // if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
 
         if (StopSpin_Button) StopSpin_Button.onClick.RemoveAllListeners();
         if (StopSpin_Button) StopSpin_Button.onClick.AddListener(() => { audioController.PlayButtonAudio(); StopSpinToggle = true; StopSpin_Button.gameObject.SetActive(false); });
@@ -356,7 +356,7 @@ public class SlotBehaviour : MonoBehaviour
         foreach (var symbol in SocketManager.initUIData.paylines.symbols)
         {
             int id = symbol.ID;
-            if(id==10)
+            if(id==9)
             continue;
             else{
             double payoutValue = symbol.payout * SocketManager.initialData.Bets[BetCounter];
@@ -377,7 +377,7 @@ public class SlotBehaviour : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                int randomIndex = UnityEngine.Random.Range(0, 12);
+                int randomIndex = UnityEngine.Random.Range(0,  11);
                 slotmatrix[i].slotImages[j].sprite = myImages[randomIndex];
             }
         }
@@ -397,6 +397,9 @@ public class SlotBehaviour : MonoBehaviour
         foreach (var symbol in SocketManager.initUIData.paylines.symbols)
         {
             int id = symbol.ID;
+            if(id==9)
+            continue;
+
             double payoutValue = symbol.payout * SocketManager.initialData.Bets[BetCounter];
             
             foreach (var handler in payoutHandlers.Where(handler => handler.id == id))
@@ -818,7 +821,7 @@ public class SlotBehaviour : MonoBehaviour
     void ToggleButtonGrp(bool toggle)
     {
         if (SlotStart_Button) SlotStart_Button.btn.interactable = toggle;
-        if (MaxBet_Button) MaxBet_Button.interactable = toggle;
+        // if (MaxBet_Button) MaxBet_Button.interactable = toggle;
         if (TBetMinus_Button) TBetMinus_Button.interactable = toggle;
         if (TBetPlus_Button) TBetPlus_Button.interactable = toggle;
         spinButtonAnim.SetActive(!toggle);
@@ -898,32 +901,16 @@ public class SlotBehaviour : MonoBehaviour
         int secondSymbol = SocketManager.resultData.ResultReel[lineId][1];
         int thirdSymbol=SocketManager.resultData.ResultReel[lineId][2];
 
-        // if (SocketManager.resultData.ResultReel[lineId].Contains(9))
-        // {
-
-        //     for (int i = 0; i < SocketManager.resultData.ResultReel[lineId].Count; i++)
-        //     {
-        //         if (SocketManager.resultData.ResultReel[lineId][i] != 9)
-        //         {
-
-        //             return SocketManager.resultData.ResultReel[lineId][i];
-
-        //         }
-        //     }
-
-        // }
         if(firstSymbol== secondSymbol ){
             if(firstSymbol==thirdSymbol) 
             return firstSymbol;
-            else if(thirdSymbol==9) 
-            return firstSymbol;
             else
-            return 12;
+            return 11;
         }
         else if (firstSymbol != secondSymbol)
         {
             if (secondSymbol is 6 or 7 or 8)
-                return 12;
+                return 11;
         }
 
 
