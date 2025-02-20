@@ -356,9 +356,9 @@ public class UIManager : MonoBehaviour
             if (SymbolsText[i]) SymbolsText[i].text = paylines.symbols[i].payout + "x";
         }
 
-        if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[11].description.ToString();
-        if (Bonus_Text) Bonus_Text.text = paylines.symbols[10].description.ToString();
-        if (Wild_Text) Wild_Text.text = paylines.symbols[9].description.ToString();
+        if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[10].description.ToString();
+        if (Bonus_Text) Bonus_Text.text = paylines.symbols[9].description.ToString();
+        // if (Wild_Text) Wild_Text.text = paylines.symbols[9].description.ToString();
 
     }
 
@@ -439,19 +439,20 @@ public class UIManager : MonoBehaviour
     {
         isMusic = !isMusic;
         SpriteState spriteState = Music_Button.spriteState;
+        audioController.PlayButtonAudio();
 
         if (isMusic)
-        {
-            Music_Button.image.sprite = musicOffSpriteState[0];
-            spriteState.highlightedSprite = musicOffSpriteState[1];
-            spriteState.pressedSprite = musicOffSpriteState[2];
-            audioController.ToggleMute(false, "bg");
-        }
-        else
         {
             Music_Button.image.sprite = musicOnSpriteState[0];
             spriteState.highlightedSprite = musicOnSpriteState[1];
             spriteState.pressedSprite = musicOnSpriteState[2];
+            audioController.ToggleMute(false, "bg");
+        }
+        else
+        {
+            Music_Button.image.sprite = musicOffSpriteState[0];
+            spriteState.highlightedSprite = musicOffSpriteState[1];
+            spriteState.pressedSprite = musicOffSpriteState[2];
 
             audioController.ToggleMute(true, "bg");
         }
@@ -466,20 +467,22 @@ public class UIManager : MonoBehaviour
     {
         isSound = !isSound;
         SpriteState spriteState = Sound_Button.spriteState;
+        audioController.PlayButtonAudio();
+
         if (isSound)
         {
-            Sound_Button.image.sprite = soundOffSpriteState[0];
-            spriteState.highlightedSprite = soundOffSpriteState[1];
-            spriteState.pressedSprite = soundOffSpriteState[2];
+            Sound_Button.image.sprite = soundOnSpriteState[0];
+            spriteState.highlightedSprite = soundOnSpriteState[1];
+            spriteState.pressedSprite = soundOnSpriteState[2];
 
             if (audioController) audioController.ToggleMute(false, "button");
             if (audioController) audioController.ToggleMute(false, "wl");
         }
         else
         {
-            Sound_Button.image.sprite = soundOnSpriteState[0];
-            spriteState.highlightedSprite = soundOnSpriteState[1];
-            spriteState.pressedSprite = soundOnSpriteState[2];
+            Sound_Button.image.sprite = soundOffSpriteState[0];
+            spriteState.highlightedSprite = soundOffSpriteState[1];
+            spriteState.pressedSprite = soundOffSpriteState[2];
             if (audioController) audioController.ToggleMute(true, "button");
             if (audioController) audioController.ToggleMute(true, "wl");
         }
