@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: music_off
+      name: music_off_0
       rect:
         serializedVersion: 2
         x: 56
@@ -131,7 +131,7 @@ TextureImporter:
         width: 126
         height: 211
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: music_o
+      name: music_on_0
       rect:
         serializedVersion: 2
         x: 263
@@ -152,7 +152,7 @@ TextureImporter:
         width: 126
         height: 211
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,6 +160,90 @@ TextureImporter:
       bones: []
       spriteID: ffe64763aeb4f405c8486949b8fd53fc
       internalID: 1030215998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: music_on_1
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 567
+        width: 126
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490f123c44bd14eb3baabfa739c2900c
+      internalID: -1143484476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: music_on_2
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 313
+        width: 126
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cd0645bdf25d4bc0b27e3f530016e75
+      internalID: -1436546865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: music_off_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 568
+        width: 126
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da2e3ee848414810b698680e08e328e
+      internalID: 1508100841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: music_off_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 313
+        width: 126
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2dfc7a0d12c6480a98b64fe803783d4
+      internalID: 277012381
       vertices: []
       indices: 
       edges: []
@@ -175,8 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      music_o: 1030215998
-      music_off: 171735953
+      music_off_0: 171735953
+      music_off_1: 1508100841
+      music_off_2: 277012381
+      music_on_0: 1030215998
+      music_on_1: -1143484476
+      music_on_2: -1436546865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

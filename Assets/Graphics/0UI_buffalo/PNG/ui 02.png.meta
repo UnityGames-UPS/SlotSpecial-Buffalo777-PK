@@ -228,13 +228,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui 02_1
+      name: turbo_button
       rect:
         serializedVersion: 2
-        x: 2698
-        y: 554
-        width: 233
-        height: 231
+        x: 2669
+        y: 524
+        width: 293
+        height: 291
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,8 +283,8 @@ TextureImporter:
       balance: -1481999752
       bg: 2100666167
       coin: 396524617
+      turbo_button: -655434409
       ui 02_0: 479836396
-      ui 02_1: -655434409
       ui 02_2: 1472863210
       win: -1442770842
   mipmapLimitGroupName: 

@@ -55,14 +55,15 @@ public class SlotBehaviour : MonoBehaviour
     [SerializeField] private TMP_Text TotalBet_text;
     [SerializeField] private TMP_Text LineBet_text;
     [SerializeField] private TMP_Text TotalWin_text;
+    [SerializeField] private GameObject TotalWinAnim;
+    [SerializeField] private TMP_Text line_text;
 
     [Header("Audio Management")]
     [SerializeField] private AudioController audioController;
 
     [SerializeField] private UIManager uiManager;
 
-    [Header("BonusGame Popup")]
-    [SerializeField] private BonusController _bonusManager;
+
 
     [Header("Free Spins Board")]
     [SerializeField] private GameObject FSBoard_Object;
@@ -131,8 +132,8 @@ public class SlotBehaviour : MonoBehaviour
         if (TBetMinus_Button) TBetMinus_Button.onClick.RemoveAllListeners();
         if (TBetMinus_Button) TBetMinus_Button.onClick.AddListener(delegate { ChangeBet(false); });
 
-        if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
-        if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
+        // if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
+        // if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
 
         if (StopSpin_Button) StopSpin_Button.onClick.RemoveAllListeners();
         if (StopSpin_Button) StopSpin_Button.onClick.AddListener(() => { audioController.PlayButtonAudio(); StopSpinToggle = true; StopSpin_Button.gameObject.SetActive(false); });
@@ -355,7 +356,7 @@ public class SlotBehaviour : MonoBehaviour
         foreach (var symbol in SocketManager.initUIData.paylines.symbols)
         {
             int id = symbol.ID;
-            if(id==10)
+            if(id==9)
             continue;
             else{
             double payoutValue = symbol.payout * SocketManager.initialData.Bets[BetCounter];
@@ -376,7 +377,7 @@ public class SlotBehaviour : MonoBehaviour
         {
             for (int j = 0; j < 3; j++)
             {
-                int randomIndex = UnityEngine.Random.Range(0, 12);
+                int randomIndex = UnityEngine.Random.Range(0,  11);
                 slotmatrix[i].slotImages[j].sprite = myImages[randomIndex];
             }
         }
@@ -392,9 +393,13 @@ public class SlotBehaviour : MonoBehaviour
         if (Balance_text) Balance_text.text = SocketManager.playerdata.Balance.ToString("F3");
         currentBalance = SocketManager.playerdata.Balance;
         currentTotalBet = SocketManager.initialData.Bets[BetCounter] * Lines;
+        line_text.text=Lines.ToString();
         foreach (var symbol in SocketManager.initUIData.paylines.symbols)
         {
             int id = symbol.ID;
+            if(id==9)
+            continue;
+
             double payoutValue = symbol.payout * SocketManager.initialData.Bets[BetCounter];
             
             foreach (var handler in payoutHandlers.Where(handler => handler.id == id))
@@ -507,6 +512,7 @@ public class SlotBehaviour : MonoBehaviour
             ToggleButtonGrp(true);
             yield break;
         }
+            TotalWinAnim.SetActive(false);
         
         CheckSpinAudio = true;
 
@@ -620,6 +626,7 @@ public class SlotBehaviour : MonoBehaviour
 
         }
         if (SocketManager.playerdata.currentWining > 0){
+            TotalWinAnim.SetActive(true);
             WinningsAnim(true);
             audioController.PlayCoinSounds();
 
@@ -634,24 +641,15 @@ public class SlotBehaviour : MonoBehaviour
 
         currentBalance = SocketManager.playerdata.Balance;
 
-        if (SocketManager.resultData.jackpot > 0)
+        if (SocketManager.resultData.jackpot >  0)
         {
             uiManager.PopulateWin(4, SocketManager.resultData.jackpot);
             yield return new WaitUntil(() => !CheckPopups);
-            CheckPopups = true;
-        }
-
-        if (SocketManager.resultData.isBonus)
-        {
-            CheckBonusGame();
-        }
-        else
-        {
-            CheckWinPopups();
-        }
+            // CheckPopups = true;
+        }else
+        CheckWinPopups();
 
         yield return new WaitUntil(() => !CheckPopups);
-
 
         if (SocketManager.resultData.isfreeSpinAdded)
         {
@@ -746,10 +744,7 @@ public class SlotBehaviour : MonoBehaviour
         }
     }
 
-    internal void CheckBonusGame()
-    {
-        _bonusManager.StartBonus((int)SocketManager.resultData.BonusStopIndex);
-    }
+
 
     //generate the payout lines generated 
     private void CheckPayoutLineBackend(List<List<string>> points_AnimString, double jackpot = 0)
@@ -826,7 +821,7 @@ public class SlotBehaviour : MonoBehaviour
     void ToggleButtonGrp(bool toggle)
     {
         if (SlotStart_Button) SlotStart_Button.btn.interactable = toggle;
-        if (MaxBet_Button) MaxBet_Button.interactable = toggle;
+        // if (MaxBet_Button) MaxBet_Button.interactable = toggle;
         if (TBetMinus_Button) TBetMinus_Button.interactable = toggle;
         if (TBetPlus_Button) TBetPlus_Button.interactable = toggle;
         spinButtonAnim.SetActive(!toggle);
@@ -904,31 +899,20 @@ public class SlotBehaviour : MonoBehaviour
 
         int firstSymbol = SocketManager.resultData.ResultReel[lineId][0];
         int secondSymbol = SocketManager.resultData.ResultReel[lineId][1];
+        int thirdSymbol=SocketManager.resultData.ResultReel[lineId][2];
 
-        if (SocketManager.resultData.ResultReel[lineId].Contains(9))
-        {
-
-            for (int i = 0; i < SocketManager.resultData.ResultReel[lineId].Count; i++)
-            {
-                if (SocketManager.resultData.ResultReel[lineId][i] != 9)
-                {
-
-                    return SocketManager.resultData.ResultReel[lineId][i];
-
-                }
-            }
-
+        if(firstSymbol== secondSymbol ){
+            if(firstSymbol==thirdSymbol) 
+            return firstSymbol;
+            else
+            return 11;
         }
-
-        if (firstSymbol != secondSymbol)
+        else if (firstSymbol != secondSymbol)
         {
             if (secondSymbol is 6 or 7 or 8)
-                return 12;
+                return 11;
         }
-        else
-        {
-            return firstSymbol;
-        }
+
 
         return -1;
     }

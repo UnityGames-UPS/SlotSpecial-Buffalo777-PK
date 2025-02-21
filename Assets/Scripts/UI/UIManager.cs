@@ -5,7 +5,6 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
-using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -57,8 +56,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button Sound_Button;
     [SerializeField] private Button Music_Button;
 
-    [SerializeField] private Sprite[] sound_onOff_sprite;
-    [SerializeField] private Sprite[] MusicOnOff_Sprite;
+    [SerializeField] private Sprite[] soundOnSpriteState;
+    [SerializeField] private Sprite[] soundOffSpriteState;
+    [SerializeField] private Sprite[] musicOnSpriteState;
+    [SerializeField] private Sprite[] musicOffSpriteState;
 
 
     [Header("Win Popup")]
@@ -355,9 +356,9 @@ public class UIManager : MonoBehaviour
             if (SymbolsText[i]) SymbolsText[i].text = paylines.symbols[i].payout + "x";
         }
 
-        if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[11].description.ToString();
-        if (Bonus_Text) Bonus_Text.text = paylines.symbols[10].description.ToString();
-        if (Wild_Text) Wild_Text.text = paylines.symbols[9].description.ToString();
+        if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[10].description.ToString();
+        if (Bonus_Text) Bonus_Text.text = paylines.symbols[9].description.ToString();
+        // if (Wild_Text) Wild_Text.text = paylines.symbols[9].description.ToString();
 
     }
 
@@ -377,6 +378,7 @@ public class UIManager : MonoBehaviour
         }
         if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(true);
+        currentPopup = Popup;
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
     }
 
@@ -389,23 +391,6 @@ public class UIManager : MonoBehaviour
         {
             if (currentPopup) currentPopup.SetActive(false);
             if (MainPopup_Object) MainPopup_Object.SetActive(false);
-        }
-    }
-
-    private void ToggleMusic()
-    {
-        isMusic = !isMusic;
-        if (isMusic)
-        {
-            Music_Button.image.sprite=MusicOnOff_Sprite[0];
-
-            audioController.ToggleMute(false, "bg");
-        }
-        else
-        {
-            Music_Button.image.sprite=MusicOnOff_Sprite[1];
-
-            audioController.ToggleMute(true, "bg");
         }
     }
 
@@ -450,22 +435,60 @@ public class UIManager : MonoBehaviour
     {
         Application.OpenURL(url);
     }
+    private void ToggleMusic()
+    {
+        isMusic = !isMusic;
+        SpriteState spriteState = Music_Button.spriteState;
+        audioController.PlayButtonAudio();
+
+        if (isMusic)
+        {
+            Music_Button.image.sprite = musicOnSpriteState[0];
+            spriteState.highlightedSprite = musicOnSpriteState[1];
+            spriteState.pressedSprite = musicOnSpriteState[2];
+            audioController.ToggleMute(false, "bg");
+        }
+        else
+        {
+            Music_Button.image.sprite = musicOffSpriteState[0];
+            spriteState.highlightedSprite = musicOffSpriteState[1];
+            spriteState.pressedSprite = musicOffSpriteState[2];
+
+            audioController.ToggleMute(true, "bg");
+        }
+
+        Music_Button.spriteState = spriteState;
+        Music_Button.interactable = false;
+        Music_Button.interactable = true;
+    }
+
 
     private void ToggleSound()
     {
         isSound = !isSound;
+        SpriteState spriteState = Sound_Button.spriteState;
+        audioController.PlayButtonAudio();
+
         if (isSound)
         {
-            Sound_Button.image.sprite=sound_onOff_sprite[0];
+            Sound_Button.image.sprite = soundOnSpriteState[0];
+            spriteState.highlightedSprite = soundOnSpriteState[1];
+            spriteState.pressedSprite = soundOnSpriteState[2];
+
             if (audioController) audioController.ToggleMute(false, "button");
             if (audioController) audioController.ToggleMute(false, "wl");
         }
         else
         {
-            Sound_Button.image.sprite=sound_onOff_sprite[1];
+            Sound_Button.image.sprite = soundOffSpriteState[0];
+            spriteState.highlightedSprite = soundOffSpriteState[1];
+            spriteState.pressedSprite = soundOffSpriteState[2];
             if (audioController) audioController.ToggleMute(true, "button");
             if (audioController) audioController.ToggleMute(true, "wl");
         }
+        Sound_Button.spriteState = spriteState;
+        Sound_Button.interactable = false;
+        Sound_Button.interactable = true;
     }
 
     private IEnumerator DownloadImage(string url)
