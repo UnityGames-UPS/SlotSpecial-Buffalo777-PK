@@ -470,7 +470,7 @@ public class GameData
     public bool isfreeSpinAdded {get; set;}
     public int freeSpinCount {get; set;}
     public List<string> FinalsymbolsToEmit { get; set; }
-    public double jackpot { get; set; }
+    public bool isJackpot { get; set; }
     public bool isBonus { get; set; }
     public double BonusStopIndex { get; set; }
 }
