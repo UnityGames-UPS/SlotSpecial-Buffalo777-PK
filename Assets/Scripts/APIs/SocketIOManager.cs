@@ -40,8 +40,8 @@ public class SocketIOManager : MonoBehaviour
     [SerializeField]
     private string testToken;
 
-    protected string gameID = "SL-BS";
-    //  protected string gameID = "";
+    // protected string gameID = "SL-BS";
+     protected string gameID = "";
 
     internal bool isLoaded = false;
 
@@ -470,7 +470,7 @@ public class GameData
     public bool isfreeSpinAdded {get; set;}
     public int freeSpinCount {get; set;}
     public List<string> FinalsymbolsToEmit { get; set; }
-    public double jackpot { get; set; }
+    public bool isJackpot { get; set; }
     public bool isBonus { get; set; }
     public double BonusStopIndex { get; set; }
 }
