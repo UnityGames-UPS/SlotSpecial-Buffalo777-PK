@@ -100,7 +100,7 @@ public class SlotBehaviour : MonoBehaviour
     internal int BetCounter = 0;
     private double currentBalance = 0;
     private double currentTotalBet = 0;
-    protected int Lines = 1;
+    internal int Lines = 1;
     private bool StopSpinToggle;
     private float SpinDelay = 0.2f;
     private bool IsTurboOn;
@@ -299,36 +299,7 @@ public class SlotBehaviour : MonoBehaviour
         }
     }
 
-    #region LinesCalculation
-    //Fetch Lines from backend
-    internal void FetchLines(string LineVal, int count)
-    {
-        // y_string.Add(count + 1, LineVal);
-        // StaticLine_Texts[count].text = (count + 1).ToString();
-        // StaticLine_Objects[count].SetActive(true);
-    }
 
-    //Generate Static Lines from button hovers
-    internal void GenerateStaticLine(TMP_Text LineID_Text)
-    {
-
-    }
-
-    //Destroy Static Lines from button hovers
-    internal void DestroyStaticLine()
-    {
-    }
-    #endregion
-
-    private void MaxBet()
-    {
-        if (audioController) audioController.PlayButtonAudio();
-        BetCounter = SocketManager.initialData.Bets.Count - 1;
-        if (LineBet_text) LineBet_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
-        if (TotalBet_text) TotalBet_text.text = (SocketManager.initialData.Bets[BetCounter] * Lines).ToString();
-        currentTotalBet = SocketManager.initialData.Bets[BetCounter] * Lines;
-        // CompareBalance();
-    }
 
     private void ChangeBet(bool IncDec)
     {
@@ -753,12 +724,6 @@ public class SlotBehaviour : MonoBehaviour
         List<int> points_anim = null;
         if (points_AnimString.Count > 0)
         {
-
-            // for (int i = 0; i < LineId.Count; i++)
-            // {
-            //     y_points = y_string[LineId[i] + 1]?.Split(',')?.Select(Int32.Parse)?.ToList();
-            //     PayCalculator.GeneratePayoutLinesBackend(y_points, y_points.Count);
-            // }
 
             if (jackpot > 0)
             {
