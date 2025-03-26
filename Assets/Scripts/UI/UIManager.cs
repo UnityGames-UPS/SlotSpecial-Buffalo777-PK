@@ -18,10 +18,6 @@ public class UIManager : MonoBehaviour
     [Header("Settings UI")]
     [SerializeField]
     private Button Settings_Button;
-
-
-
-
     [Header("Popus UI")]
     [SerializeField]
     private GameObject MainPopup_Object;
@@ -212,7 +208,10 @@ public class UIManager : MonoBehaviour
         });
 
         if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.RemoveAllListeners();
-        if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.AddListener(CallOnExitFunction);
+        if (CloseDisconnect_Button) CloseDisconnect_Button.onClick.AddListener(()=>{
+          CallOnExitFunction();
+          slotManager.SocketManager.closeSocketReactnativeCall();
+        });
 
         if (CloseAD_Button) CloseAD_Button.onClick.RemoveAllListeners();
         if (CloseAD_Button) CloseAD_Button.onClick.AddListener(CallOnExitFunction);

@@ -84,7 +84,7 @@ public class SlotBehaviour : MonoBehaviour
     private List<ImageAnimation> TempList;
 
     [SerializeField]
-    private SocketIOManager SocketManager;
+    internal SocketIOManager SocketManager;
 
     private Coroutine AutoSpinRoutine = null;
     private Coroutine FreeSpinRoutine = null;
