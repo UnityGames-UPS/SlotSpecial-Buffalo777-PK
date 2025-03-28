@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Slot-buffalo_777.sln"
+    "dotnet.defaultSolution": "SlotSG-buffalo777.sln"
 }
