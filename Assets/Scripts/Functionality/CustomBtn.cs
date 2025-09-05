@@ -35,10 +35,7 @@ public class CustomBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             triggerOnHoldAction=false;
             return;
         }
-            SpinAction.Invoke();
-        Debug.Log("up");
-
-
+        SpinAction.Invoke();
     }
 
     IEnumerator HoldCheckRoutine()
