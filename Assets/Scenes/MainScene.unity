@@ -5742,7 +5742,7 @@ MonoBehaviour:
   uiManager: {fileID: 377874625}
   RaycastBlocker: {fileID: 2125678731}
   JSManager: {fileID: 1771480575}
-  testToken: 06374cc6db1f419cb9c6eb4931d6624e
+  testToken: 5ff5d6a04f8a4253b9913b873b848019
 --- !u!1 &505613132
 GameObject:
   m_ObjectHideFlags: 0
@@ -12878,8 +12878,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1579928447}
   - {fileID: 1479733672}
+  - {fileID: 1579928447}
   - {fileID: 939354220}
   - {fileID: 57157493}
   m_Father: {fileID: 739030696}
@@ -18875,7 +18875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1579928447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18893,7 +18893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -532.00006, y: -243}
+  m_AnchoredPosition: {x: -532.00006, y: -486}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579928448
@@ -23098,6 +23098,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4eced0fca3b1e44eebf54c46315e5112, type: 3}
   - {fileID: 21300000, guid: 8e99b6a2e463d41ecb1a20d4af4b132e, type: 3}
   - {fileID: 21300000, guid: 61fc31b5c30f0455296bd215fbdff851, type: 3}
+  - {fileID: 21300000, guid: 3a2a5ed9e42514d7a91f919be6a1112e, type: 3}
   slotmatrix:
   - slotImages:
     - {fileID: 96213513}
@@ -23334,7 +23335,23 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 34561a5033b714fe093288b138aee248, type: 3}
   - {fileID: 21300000, guid: e6c36ede682994c498b2c3fd3f5298e3, type: 3}
   - {fileID: 21300000, guid: 8c4f8d28c595b4681b3d076f038f9f68, type: 3}
-  anim_ID_11: []
+  anim_ID_11:
+  - {fileID: 21300000, guid: db0aec5d15d304f8ebe97c8496c5d3f9, type: 3}
+  - {fileID: 21300000, guid: 62ccb036d0bfb4c5499a4ae3e3e1d28d, type: 3}
+  - {fileID: 21300000, guid: dc8916c6590d745cea22962cb3515b52, type: 3}
+  - {fileID: 21300000, guid: 6d6379947157e4b2494bafea7504a74e, type: 3}
+  - {fileID: 21300000, guid: b74ec1fe570ae4918810340aee5c24a0, type: 3}
+  - {fileID: 21300000, guid: f3ba5db89a0e44b6081a2e8fa4497de3, type: 3}
+  - {fileID: 21300000, guid: b1c716e16ebb54f30849d7421a38cda8, type: 3}
+  - {fileID: 21300000, guid: 46decb2d4a0ab431d9f23ecde5ba6d3c, type: 3}
+  - {fileID: 21300000, guid: 006841fd4b3fd412889abc093edd45ed, type: 3}
+  - {fileID: 21300000, guid: e3afc2c7011d64b02a5aff3a7181a8ca, type: 3}
+  - {fileID: 21300000, guid: 1d29241c2b2b44f24acca239506c8140, type: 3}
+  - {fileID: 21300000, guid: 2327edef6a589440ba02229ba8b5de24, type: 3}
+  - {fileID: 21300000, guid: db9c4497004ea420c8fffb142f335532, type: 3}
+  - {fileID: 21300000, guid: 925d18b82b6404c359ed3499e9ac6278, type: 3}
+  - {fileID: 21300000, guid: 0bb1179c216724b198ec5b889001a015, type: 3}
+  - {fileID: 21300000, guid: 90aefa9b1212d476da024eb189c2a2e6, type: 3}
   payoutHandlers:
   - {fileID: 1729928990}
   - {fileID: 895995892}

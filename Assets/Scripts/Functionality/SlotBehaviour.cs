@@ -439,7 +439,7 @@ public class SlotBehaviour : MonoBehaviour
         break;
       case 11:
         animScript.textureArray.AddRange(anim_ID_11);
-        animScript.AnimationSpeed = anim_ID_11.Length / 1.5f;
+        animScript.AnimationSpeed = 10;
         break;
       case 10:
         animScript.textureArray.AddRange(anim_ID_10);
