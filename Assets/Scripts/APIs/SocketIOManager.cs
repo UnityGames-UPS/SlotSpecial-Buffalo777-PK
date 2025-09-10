@@ -20,6 +20,7 @@ public class SocketIOManager : MonoBehaviour
   [SerializeField] private UIManager uiManager;
   [SerializeField] private GameObject RaycastBlocker;
   internal GameData initialData = null;
+  internal Features initFeatures = null;
   internal UiData initUIData = null;
   internal Root resultData = null;
   internal Player playerdata = null;
@@ -328,6 +329,7 @@ public class SocketIOManager : MonoBehaviour
         {
           initUIData = myData.uiData;
           initialData = myData.gameData;
+          initFeatures = myData.features;
           if (!SetInit)
           {
             PopulateSlotSocket();
@@ -457,6 +459,7 @@ public class Data
 public class Features
 {
   public int freeSpinCount { get; set; }
+  public double anyPayout;
 }
 
 public class GameData

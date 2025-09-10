@@ -326,8 +326,15 @@ public class SlotBehaviour : MonoBehaviour
     foreach (var symbol in SocketManager.initUIData.paylines.symbols)
     {
       int id = symbol.id;
+      if (id > 9)
+      {
+        break;
+      }
       if (id == 9)
-        continue;
+      {
+        double payout = SocketManager.initFeatures.anyPayout * SocketManager.initialData.bets[BetCounter];
+        payoutHandlers[12].text.text = payout.ToString("f3");
+      }
       else
       {
         double payoutValue = symbol.payout * SocketManager.initialData.bets[BetCounter];
@@ -335,7 +342,6 @@ public class SlotBehaviour : MonoBehaviour
         {
           handler.text.text = payoutValue.ToString("f3");
         }
-
       }
     }
     // CompareBalance();
@@ -368,8 +374,16 @@ public class SlotBehaviour : MonoBehaviour
     foreach (var symbol in SocketManager.initUIData.paylines.symbols)
     {
       int id = symbol.id;
+      if (id > 9)
+      {
+        break;
+      }
       if (id == 9)
+      {
+        double payout = SocketManager.initFeatures.anyPayout * SocketManager.initialData.bets[BetCounter];
+        payoutHandlers[12].text.text = payout.ToString("f3");
         continue;
+      }
 
       double payoutValue = symbol.payout * SocketManager.initialData.bets[BetCounter];
 
