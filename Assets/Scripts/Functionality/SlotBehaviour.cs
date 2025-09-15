@@ -326,14 +326,14 @@ public class SlotBehaviour : MonoBehaviour
     foreach (var symbol in SocketManager.initUIData.paylines.symbols)
     {
       int id = symbol.id;
-      if (id > 9)
-      {
-        break;
-      }
       if (id == 9)
       {
         double payout = SocketManager.initFeatures.anyPayout * SocketManager.initialData.bets[BetCounter];
         payoutHandlers[12].text.text = payout.ToString("f3");
+      }
+      else if (id == 11)
+      {
+        double JackpotPayout = SocketManager.initUIData.paylines.symbols[10].payout * SocketManager.initialData.bets[BetCounter];
       }
       else
       {
@@ -374,22 +374,23 @@ public class SlotBehaviour : MonoBehaviour
     foreach (var symbol in SocketManager.initUIData.paylines.symbols)
     {
       int id = symbol.id;
-      if (id > 9)
-      {
-        break;
-      }
       if (id == 9)
       {
         double payout = SocketManager.initFeatures.anyPayout * SocketManager.initialData.bets[BetCounter];
         payoutHandlers[12].text.text = payout.ToString("f3");
         continue;
       }
-
-      double payoutValue = symbol.payout * SocketManager.initialData.bets[BetCounter];
-
-      foreach (var handler in payoutHandlers.Where(handler => handler.id == id))
+      else if (id == 11)
       {
-        handler.text.text = payoutValue.ToString("f3");
+        double JackpotPayout = SocketManager.initUIData.paylines.symbols[10].payout * SocketManager.initialData.bets[BetCounter];
+      }
+      else
+      {
+        double payoutValue = symbol.payout * SocketManager.initialData.bets[BetCounter];
+        foreach (var handler in payoutHandlers.Where(handler => handler.id == id))
+        {
+          handler.text.text = payoutValue.ToString("f3");
+        }
       }
     }
     CompareBalance();

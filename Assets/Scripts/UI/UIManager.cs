@@ -330,7 +330,7 @@ public class UIManager : MonoBehaviour
     OpenPopup(WinPopup_Object);
     // if (WinPopup_Object) WinPopup_Object.SetActive(true);
     // if (MainPopup_Object) MainPopup_Object.SetActive(true);
-    WinPopupTextTween = DOTween.To(() => initAmount, (val) => initAmount = val, amount, 5f).OnUpdate(() =>
+    WinPopupTextTween = DOTween.To(() => initAmount, (val) => initAmount = val, amount, 3f).OnUpdate(() =>
     {
       if (Win_Text) Win_Text.text = initAmount.ToString("F3");
     });
